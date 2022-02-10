@@ -54,18 +54,15 @@ async function getStudent(id) {
     }
 };
 
-async function addCourse(studentId, courseId, name) {
+async function addCourse(student, courseId, name) {
     const database = db.client().db(MAIN_DATABASE);
     const studentsCollection = database.collection(STUDENTS_COLLECTION);
     try {
-        const student = await studentsCollection.findOne({ _id: ObjectId(studentId) });
-        if (!student) {
-            throw `Student with id ${id} not found`;
-        }
+
         student.courses = [...student.courses, { id: courseId, name }];
-        const result = await studentsCollection.updateOne({ _id: ObjectId(studentId) }, { $set: { courses: student.courses } });
+        const result = await studentsCollection.updateOne({ _id: ObjectId(student.id) }, { $set: { courses: student.courses } });
         if (result.modifiedCount === 0) {
-            throw `Couldn't add course to student with id ${studentId}`;
+            throw `Couldn't add course to student with id ${student.id}`;
         }
         return student;
     } catch (err) {
@@ -73,8 +70,25 @@ async function addCourse(studentId, courseId, name) {
     }
 };
 
+async function removeCourse(student, courseId) {
+    const database = db.client().db(MAIN_DATABASE);
+    const studentsCollection = database.collection(STUDENTS_COLLECTION);
+    try {
+
+        student.courses = student.courses.filter(c => c.id != courseId);
+        const result = await studentsCollection.updateOne({ _id: ObjectId(student.id) }, { $set: { courses: student.courses } });
+        if (result.modifiedCount === 0) {
+            throw `Couldn't remove course to student with id ${student.id}`;
+        }
+        return student;
+    } catch (err) {
+        throw `Error removing courses: ${err}`;
+    }
+};
+
 module.exports = {
     getAll: getStudents,
     getOne: getStudent,
     addCourse: addCourse,
+    removeCourse: removeCourse
 }
