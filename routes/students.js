@@ -5,7 +5,7 @@ async function getStudents(req, res) {
         const pageSize = +req.query.pageSize || 10;
         const page = +req.query.page || 1;
         const result = await services.students.getAll(pageSize, page);
-        res.json({ success: true, data: { students: result.students, hasNextPage: page * pageSize < result.totalCount } });
+        res.json({ success: true, data: { students: result.students, hasNextPage: page * pageSize < result.totalCount, totalCount: result.totalCount } });
     }
     catch (err) {
         console.error(`error fetching students: ${err}`);
