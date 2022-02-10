@@ -1,8 +1,17 @@
 const ObjectId = require('mongodb').ObjectId;
 
 const { MAIN_DATABASE, COURSES_COLLECTION } = require("../constants");
+
+/**
+ * DB 
+ */
 const db = require("../db");
 
+/**
+ * Get courses from DB
+ * Map the courses
+ * @returns 
+ */
 async function getCourses() {
     const database = db.client().db(MAIN_DATABASE);
     const coursesCollection = database.collection(COURSES_COLLECTION);
@@ -23,6 +32,12 @@ async function getCourses() {
     }
 }
 
+/**
+ * Get course by Id
+ * Map the course
+ * @param {*} id 
+ * @returns 
+ */
 async function getCourse(id) {
     const database = db.client().db(MAIN_DATABASE);
     const coursesCollection = database.collection(COURSES_COLLECTION);
@@ -46,6 +61,11 @@ async function getCourse(id) {
     }
 }
 
+/**
+ * Create Course
+ * @param {*} course 
+ * @returns 
+ */
 async function createCourse(course) {
     const database = db.client().db(MAIN_DATABASE);
     const coursesCollection = database.collection(COURSES_COLLECTION);
@@ -61,6 +81,9 @@ async function createCourse(course) {
     }
 };
 
+/**
+ * Exports
+ */
 module.exports = {
     getAll: getCourses,
     getOne: getCourse,

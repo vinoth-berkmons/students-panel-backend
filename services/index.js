@@ -4,6 +4,9 @@ const db = require('./db');
 const users = require('./users');
 const sessions = require('./sessions');
 
+/**
+ * Service index exports
+ */
 module.exports = {
     db,
     students,

@@ -1,5 +1,13 @@
 const services = require('../services');
 
+/**
+ * Get course route
+ * returns the list of courses
+ * handled only success and failure returns as 500.
+ * No other status codes are handled
+ * @param {*} req 
+ * @param {*} res 
+ */
 async function getCourses(req, res) {
     try {
         const courses = await services.courses.getAll();
@@ -11,6 +19,15 @@ async function getCourses(req, res) {
         res.json({ success: false, error: err });
     }
 }
+
+/**
+ * Create course route
+ * create course
+ * handled only success and failure returns as 500.
+ * No other status codes are handled
+ * @param {*} req 
+ * @param {*} res 
+ */
 
 async function createCourse(req, res) {
     try {
@@ -24,11 +41,17 @@ async function createCourse(req, res) {
     }
 }
 
+/**
+ * Exports
+ * @returns 
+ */
+
 function course() {
     return {
         getAll: getCourses,
         create: createCourse,
     }
 }
+
 
 module.exports = course();

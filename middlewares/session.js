@@ -1,5 +1,11 @@
 const services = require('../services');
 
+/**
+ * Middleware to handle the session
+ * @param {*} req 
+ * @param {*} res 
+ * @param {*} next 
+ */
 async function checkSession(req, res, next) {
     try {
         const bearer = req.cookies['Authorization'];

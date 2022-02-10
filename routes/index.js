@@ -3,6 +3,11 @@ const course = require('./courses');
 const session = require('./session');
 const sessionsMiddleWare = require('../middlewares/session');
 
+/**
+ * Routes main page
+ * All the routes are declared here
+ * @param {*} app 
+ */
 function setRoutes(app) {
   app.get('/students', sessionsMiddleWare, student.getAll);
   app.get('/students/:id', sessionsMiddleWare, student.getOne);

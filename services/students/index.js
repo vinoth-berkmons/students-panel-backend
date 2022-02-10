@@ -1,8 +1,19 @@
 const ObjectId = require('mongodb').ObjectId;
 
 const { MAIN_DATABASE, STUDENTS_COLLECTION } = require("../constants");
+
+/**
+ * DB
+ */
 const db = require("../db");
 
+/**
+ * Get students list by pagination
+ * Map the students from DB
+ * @param {*} pageSize 
+ * @param {*} pageNumber 
+ * @returns 
+ */
 async function getStudents(pageSize, pageNumber) {
     const database = db.client().db(MAIN_DATABASE);
     const studentsCollection = database.collection(STUDENTS_COLLECTION);
@@ -29,6 +40,12 @@ async function getStudents(pageSize, pageNumber) {
     }
 }
 
+/**
+ * Get student by Id
+ * map the student data from DB
+ * @param {*} id 
+ * @returns 
+ */
 async function getStudent(id) {
     const database = db.client().db(MAIN_DATABASE);
     const studentsCollection = database.collection(STUDENTS_COLLECTION);
@@ -54,6 +71,13 @@ async function getStudent(id) {
     }
 };
 
+/**
+ * Add course to the student course
+ * @param {*} student 
+ * @param {*} courseId 
+ * @param {*} name 
+ * @returns 
+ */
 async function addCourse(student, courseId, name) {
     const database = db.client().db(MAIN_DATABASE);
     const studentsCollection = database.collection(STUDENTS_COLLECTION);
@@ -70,6 +94,12 @@ async function addCourse(student, courseId, name) {
     }
 };
 
+/**
+ * Remove the course from the student list course
+ * @param {*} student 
+ * @param {*} courseId 
+ * @returns 
+ */
 async function removeCourse(student, courseId) {
     const database = db.client().db(MAIN_DATABASE);
     const studentsCollection = database.collection(STUDENTS_COLLECTION);
@@ -86,6 +116,9 @@ async function removeCourse(student, courseId) {
     }
 };
 
+/**
+ * Exports
+ */
 module.exports = {
     getAll: getStudents,
     getOne: getStudent,

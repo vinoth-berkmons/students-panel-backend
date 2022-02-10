@@ -1,6 +1,10 @@
 const services = require('../services');
 
-
+/**
+ * Login route
+ * @param {*} req 
+ * @param {*} res 
+ */
 async function login(req, res) {
     try {
         const user = await services.users.checkPassword(req.body.userName, req.body.password);
@@ -17,6 +21,11 @@ async function login(req, res) {
     }
 }
 
+/**
+ * Logout route
+ * @param {*} req 
+ * @param {*} res 
+ */
 async function logout(req, res) {
     try {
         //we are doing it as we know auth middleware is called before this

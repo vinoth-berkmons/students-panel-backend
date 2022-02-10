@@ -3,6 +3,10 @@ const { MAIN_DATABASE, STUDENTS_COLLECTION } = require('../services/constants');
 const config = require('../config');
 const services = require('../services');
 
+/**
+ * Dummy data to add into the DB
+ */
+
 const defaultStudents = [
     {
         id: "98888880", firstName: "Student 1", lastName: "intial", email: "student1@stu.com", mobile: "+919999999999", gender: "male", dob: "1995-05-05", status: "Sophomore", department: "Computer Science", courses: []

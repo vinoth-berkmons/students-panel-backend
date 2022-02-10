@@ -2,6 +2,11 @@ const { MongoClient } = require("mongodb");
 
 let client;
 
+/**
+ * DB initialization
+ * @param {*} uri 
+ * @returns 
+ */
 const connectToDb = (uri) => new Promise((resolve, reject) => {
     const clientWithConnection = new MongoClient(uri);
     clientWithConnection.connect().

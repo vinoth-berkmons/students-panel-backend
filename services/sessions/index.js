@@ -1,9 +1,22 @@
 var uuid = require('uuid');
 
 const { MAIN_DATABASE, SESSION_COLLECTION } = require("../constants");
+
+/**
+ * DB
+ */
 const db = require("../db");
+
+/**
+ * Hash function for more security
+ */
 const { sha512 } = require('../../helpers/crypto');
 
+/**
+ * Check session
+ * @param {*} sessionId 
+ * @returns 
+ */
 async function checkSession(sessionId) {
     const database = db.client().db(MAIN_DATABASE);
     const sessionsCollection = database.collection(SESSION_COLLECTION);
@@ -18,6 +31,11 @@ async function checkSession(sessionId) {
     }
 };
 
+/**
+ * Invalidate the session
+ * @param {*} sessionId 
+ * @returns 
+ */
 async function invalidateSession(sessionId) {
     const database = db.client().db(MAIN_DATABASE);
     const sessionsCollection = database.collection(SESSION_COLLECTION);
@@ -33,6 +51,11 @@ async function invalidateSession(sessionId) {
     }
 }
 
+/**
+ * Create the session
+ * @param {*} userId 
+ * @returns 
+ */
 async function createSession(userId) {
     const database = db.client().db(MAIN_DATABASE);
     const sessionsCollection = database.collection(SESSION_COLLECTION);
@@ -48,6 +71,10 @@ async function createSession(userId) {
         throw `Error creating session: ${err}`;
     }
 };
+
+/**
+ * Exports
+ */
 
 module.exports = {
     checkSession,

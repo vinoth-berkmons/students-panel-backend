@@ -1,3 +1,6 @@
+/**
+ * App constants
+ */
 const MAIN_DATABASE = 'academia';
 const COURSES_COLLECTION = 'courses';
 const STUDENTS_COLLECTION = 'students';

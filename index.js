@@ -10,6 +10,10 @@ const routes = require('./routes');
 const services = require('./services');
 
 
+/**
+ * main index file
+ */
+
 config.load();
 const app = express();
 const port = config.port();

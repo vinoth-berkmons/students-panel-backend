@@ -8,6 +8,11 @@ const genRandomString = function (length) {
         .slice(0, length);   /** return required number of characters */
 };
 
+/**
+ * hash function to secure the password
+ * @param {*} password 
+ * @returns 
+ */
 
 const sha512 = function (password) {
     const salt = config.sessionSecret();

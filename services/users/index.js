@@ -1,7 +1,21 @@
 const { MAIN_DATABASE, USERS_COLLECTION } = require("../constants");
+
+/**
+ * DB
+ */
 const db = require("../db");
+
+/**
+ * Hash function for more security
+ */
 const { sha512 } = require('../../helpers/crypto');
 
+/**
+ * Check Password
+ * @param {*} userName 
+ * @param {*} password 
+ * @returns 
+ */
 async function checkPassword(userName, password) {
     const database = db.client().db(MAIN_DATABASE);
     const userCollection = database.collection(USERS_COLLECTION);

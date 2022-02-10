@@ -1,3 +1,7 @@
+/**
+ * App configuration
+ */
+
 const dotenv = require('dotenv');
 
 function loadConfig() {

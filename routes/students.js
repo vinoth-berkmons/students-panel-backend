@@ -1,5 +1,10 @@
 const services = require('../services');
 
+/**
+ * Get Students Route
+ * @param {*} req 
+ * @param {*} res 
+ */
 async function getStudents(req, res) {
     try {
         const pageSize = +req.query.pageSize || 10;
@@ -14,6 +19,11 @@ async function getStudents(req, res) {
     }
 }
 
+/**
+ * Get student by Id Route
+ * @param {*} req 
+ * @param {*} res 
+ */
 async function getStudent(req, res) {
     try {
         const student = await services.students.getOne(req.params.id);
@@ -26,6 +36,11 @@ async function getStudent(req, res) {
     }
 }
 
+/**
+ * Add course to the student courses Route
+ * @param {*} req 
+ * @param {*} res 
+ */
 async function enrollToCourse(req, res) {
     try {
         const student = await services.students.getOne(req.body.studentId);
@@ -46,6 +61,11 @@ async function enrollToCourse(req, res) {
     }
 }
 
+/**
+ * Remove course from the student course list Route
+ * @param {*} req 
+ * @param {*} res 
+ */
 async function removeCourse(req, res) {
     try {
         const student = await services.students.getOne(req.body.studentId);
@@ -64,6 +84,10 @@ async function removeCourse(req, res) {
     }
 }
 
+/**
+ * Exports
+ * @returns 
+ */
 function student() {
     return {
         getAll: getStudents,
